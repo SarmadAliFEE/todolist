@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarmad's TODO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">TODO LIST</div>
+            <i class='bx bx-menu' id="btn" ></i>
+        </div>
+        <ul class="nav-list">
+          <li>
+            <a href="index.html">
+              <i class='bx bx-grid-alt'></i>
+              <span class="links_name">List</span>
+            </a>
+             <span class="tooltip">List</span>
+          </li>
+         <li>
+           <a href="work-log.html">
+             <i class='bx bx-pie-chart-alt-2' ></i>
+             <span class="links_name">Work log</span>
+           </a>
+           <span class="tooltip">Work log</span>
+         </li>
+         <li>
+           <a href="#">
+             <i class='bx bx-cog' ></i>
+             <span class="links_name">Setting</span>
+           </a>
+           <span class="tooltip">Setting</span>
+         </li>
+        </ul>
+    </div>
+
+
+
+
+
+    <main class="app">
+        <section class="greeting">
+            <h2 class="title">
+                Hello, <input type="text" id="name" placeholder="Name here">
+            </h2>
+            <div class="icons">
+                <img id="theme" src="icons/moon.png" alt="Dark Theme" width="30px" height="30px">
+            </div>
+        </section>
+
+        <section class="popups">
+            <div class="save-popup" id="savePopup">
+                <img src="icons/confirm.png" width="30px" height="30px" alt="">
+                <center>
+                    <h2>
+                        Changes have been saved successfully!
+                    </h2>
+                </center>
+            </div>            
+        </section>
+
+        <section class="create-todo">
+            <h3>CREATE A TODO</h3>
+            <form id="new-todo-form">
+                <h4>What's on your todo?</h4>
+                <input type="text" name="content" id="content" placeholder="e.g Go do coding">
+                <h4>Pick a category</h4>
+                <div class="options">
+                    <label>
+                        <input type="radio" name="category" id="category1" value="business">
+                        <span class="bubble business"></span>
+					    <div>Business</div>
+                    </label>
+                    <label>
+						<input type="radio" checked name="category" id="category2" value="personal" />
+						<span class="bubble personal"></span>
+						<div>Personal</div>
+					</label>
+                </div>
+                <h4>Pick a priority</h4>
+                <select class="selection" id="prioritySelect">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <input type="submit" value="Add todo">
+            </form>
+        </section>
+
+        <section class="todo-list">
+			<div class="list-bar">
+                <h3>TODO LIST</h3>
+                <button class="clear-all">Clear All</button>
+            </div>
+            <div class="confirm-clear">
+                <center>
+                    <h1>WARNING!</h1>
+                </center>
+                <hr>
+                <p>
+                    You are about to delete all your added TODO items.<br>This can not be reverted.<br>Are you sure you want to continue? 
+                </p>
+                <center>
+                    <img src="icons/confirm.png" width="30px" height="30px" alt="Confirm" class="ccb confirm-clear-button">
+                    <img src="icons/close.png" alt="Exit" width="30px" height="30px" class="ccb decline-clear-button">
+                </center>
+            </div>
+			<div class="list" id="todo-list"></div>
+		</section>
+        <div class="blur-overlay"></div>
+        <section>
+            <div class="note-content">
+                <textarea name="note-data" placeholder="Type your note here!" class="note-data" cols="45" rows="10"></textarea>
+                <button class="close-note">
+                    Close Note
+                </button>
+                <button class="save-note">
+                    Save Note
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <script src="app.js"></script>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
+      
+        closeBtn.addEventListener("click", ()=>{
+          sidebar.classList.toggle("open");
+          menuBtnChange();//calling the function(optional)
+        });
+      
+        searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+          sidebar.classList.toggle("open");
+          menuBtnChange(); //calling the function(optional)
+        });
+      
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+         if(sidebar.classList.contains("open")){
+           closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+         }else {
+           closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+         }
+        }
+    </script>
+</body>
+</html>
